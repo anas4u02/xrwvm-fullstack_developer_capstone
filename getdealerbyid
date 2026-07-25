@@ -1,0 +1,7 @@
+Command:
+curl -X GET "http://127.0.0.1:3030/fetchDealer/3"
+
+Output:
+$(curl -sS 'http://127.0.0.1:3030/fetchDealer/3')
+
+{"_id":"6a64d24cf76833974404ccae","id":3,"city":"Birmingham","state":"Alabama","address":"9477 Twin Pines Center","zip":"35285","lat":"33.5446","long":"-86.9292","short_name":"Sub-Ex","full_name":"Sub-Ex Car Dealership","__v":0}
