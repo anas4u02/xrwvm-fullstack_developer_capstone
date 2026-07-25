@@ -41,3 +41,9 @@ class LoginUserTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json()['status'], 'Authenticated')
         self.assertTrue(User.objects.filter(username='newuser').exists())
+
+    def test_get_dealers_returns_json(self):
+        response = self.client.get('/djangoapp/get_dealers')
+
+        self.assertEqual(response.status_code, 200)
+        self.assertIn('dealers', response.json())
