@@ -1,0 +1,13 @@
+Command:
+curl -X POST "http://127.0.0.1:8000/djangoapp/login" \
+  -H "Content-Type: application/json" \
+  -d '{"userName": "anas-latitude", "password": "2392"}'
+
+Output:
+{"userName": "anas-latitude", "status": "Authenticated"}
+
+Command:
+curl -X GET "http://127.0.0.1:8000/djangoapp/logout"
+
+Output:
+{"userName": ""}
