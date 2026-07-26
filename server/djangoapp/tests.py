@@ -9,7 +9,10 @@ class LoginUserTests(TestCase):
 
         response = self.client.post(
             '/djangoapp/login',
-            data=json.dumps({'userName': 'testuser', 'password': 'secret123'}),
+            data=json.dumps({
+                'userName': 'testuser',
+                'password': 'secret123',
+            }),
             content_type='application/json',
         )
 
@@ -17,7 +20,10 @@ class LoginUserTests(TestCase):
         self.assertEqual(response.json()['status'], 'Authenticated')
 
     def test_logout_clears_session(self):
-        user = User.objects.create_user(username='logoutuser', password='secret123')
+        user = User.objects.create_user(
+            username='logoutuser',
+            password='secret123',
+        )
         self.client.force_login(user)
 
         response = self.client.get('/djangoapp/logout')
@@ -39,8 +45,13 @@ class LoginUserTests(TestCase):
         )
 
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.json()['status'], 'Authenticated')
-        self.assertTrue(User.objects.filter(username='newuser').exists())
+        self.assertEqual(
+            response.json()['status'],
+            'Authenticated',
+        )
+        self.assertTrue(
+            User.objects.filter(username='newuser').exists()
+        )
 
     def test_get_dealers_returns_json(self):
         response = self.client.get('/djangoapp/get_dealers')
