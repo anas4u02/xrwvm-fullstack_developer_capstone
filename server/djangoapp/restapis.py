@@ -1,5 +1,6 @@
 import requests
 import os
+from urllib.parse import quote
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -26,7 +27,8 @@ def get_request(endpoint, **kwargs):
 
 
 def analyze_review_sentiments(text):
-    request_url = sentiment_analyzer_url + 'analyze/' + text
+    encoded_text = quote(str(text), safe='')
+    request_url = sentiment_analyzer_url.rstrip('/') + '/analyze/' + encoded_text
     try:
         response = requests.get(request_url)
         return response.json()
